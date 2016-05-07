@@ -4,45 +4,25 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<?php ob_start();?>
 <!DOCTYPE html>
 <html>
 <head>
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="keywords" content="Albury Accommodation, 
-	Wodonga Accommodation, Albury Motel, Cheap Room, Last Minute">
-	<title>Welcome to Albury Burvale Motor Inn</title>
-	<script type="applijewelleryion/x-javascript"> 
-		addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); 
-		function hideURLbar(){ window.scrollTo(0,1); } 
-	</script>
+	<?php
+	 include("head.php");
+	?>
+
 	<script>
 		$(function() {
 		$( "#datepicker,#datepicker1" ).datepicker();
 		});
 	</script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<!--webfonts-->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,600" rel="stylesheet" type="text/css">
-	<!--//webfonts-->
-	<!---strat-date-piker---->
-	<link rel="stylesheet" href="css/jquery-ui.css">
-	<script src="js/jquery-ui.js"></script>
-
-	<!---/End-date-piker---->
-	<!-- Custom Theme files -->
-	<link href="css/style.css" rel="stylesheet" type="text/css">	
-
+	<title>Albury Burvale Motor Inn</title>
 </head>
 <body ng-app="">
 <!-- banner -->
 <div class="banner">
-	<div ng-include="'header.html'"></div>	
+	<?php include('header.html');?>
 		<div class="banner-info">
 			<div class="container">
 				<div class="details-1">
@@ -57,7 +37,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					  <div class="col-sm-4 dropdown-button">           			
 							<div class="book_date">
 								<form>
-									<input class="date" id="datepicker1" type="text" value="Check Out" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Check Out';}">
+									<input class="date1" id="datepicker1" type="text" value="Check Out" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Check Out';}">
 								</form>
 							</div>		
 						</div>
@@ -181,7 +161,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<!-- quick -->
 <!-- footer -->
- <div ng-include="'footer.html'"></div>	
+<?php include("footer.html");?>	
 <!-- footer -->
 <!--
 <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">
@@ -189,3 +169,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 </body>
 </html>
+<?php 
+	$HtmlCode= ob_get_contents(); 
+	ob_end_flush();
+	$fh=fopen('test.html','w'); 
+	fwrite($fh,$HtmlCode);
+	fclose($fh);

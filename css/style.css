@@ -283,7 +283,8 @@ input#datepicker, input#datepicker1 {
   -moz-background-size: cover;
   -o-background-size: cover;
   -ms-background-size: cover;
-  min-height:750; 
+  min-height:50px; 
+  background-position: center;
 }
 .hod {
     padding: 5em 0;
@@ -1683,6 +1684,11 @@ nav.navbar.navbar-default {
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
     border-color: none;
     background: #003366;
+}
+.navbar-default div.navbar-collapse
+{
+    border-top:none;
+    box-shadow:none;
 }
 .navigation {
     margin: 0.5em 0 0;
