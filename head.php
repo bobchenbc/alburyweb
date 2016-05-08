@@ -8,9 +8,10 @@ Wodonga Accommodation, Albury Motel, Cheap Room, Last Minute">
 <!--webfonts-->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,600" rel="stylesheet" type="text/css">
+
 <!---strat-date-piker---->
 <link rel="stylesheet" href="css/jquery-ui.css">
-<script src="js/jquery-ui.js"></script>
 <!---/End-date-piker---->
+<script src="js/jquery-ui.js"></script>
 <!-- Custom Theme files -->
 <link href="css/style.css" rel="stylesheet" type="text/css">

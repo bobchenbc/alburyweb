@@ -19,7 +19,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</script>
 	<title>Albury Burvale Motor Inn</title>
 </head>
-<body ng-app="">
+<body>
 <!-- banner -->
 <div class="banner">
 	<?php include('header.html');?>
