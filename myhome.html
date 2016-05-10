@@ -1,31 +1,32 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
 "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-  <head>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />
-    <title>My Home</title>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css" />
-	<link rel="icon" href="images/Logo_icon.png">
-    <style type="text/css">
+    <head>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>My Home</title>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css" />
+        <link rel="icon" href="images/Logo_icon.png">
+        <style type="text/css">
 .black{
-	color:black;
+    color:black;
 }
 .red{
-	color:red;
+    color:red;
 }
 .right{
-	text-align:right;
+    text-align:right;
 }
 
-input[type="text"]{
-	text-align:right;
-
+input[type="text"], input[type="number"]{
+    text-align:right;
+    width:10em;
 }
 
 body {
@@ -33,14 +34,19 @@ body {
     font-size: 16px;
     background-color: dimgrey; 
     color: #696969;
-    padding: 3px;
+    padding: 0px;
+    min-width: 300px;
+    width: auto !important; 
 }
+
 #main {
     margin: auto;
     padding: 5px;
     background-color: #ffffff;
     border-style: solid;
-    border-radius: 20px 20px 20px 20px;
+    border-radius: 0px 0px 0px 0px;
+    min-width:300px !important;
+
 }
 h1 {
     font-family: Georgia, serif;
@@ -48,170 +54,250 @@ h1 {
     color: #996600;
     font-size: 30px;
 }
+.cash_note, .card_note{
+    display:inline-block;
+    text-align:right;
 
+}
+.card_note{
+    width:6em;
+}
+.cash_note{
+    width:3em;
+}
+@media (min-width: 300px) {
 
-</style>
-    <script>
-  $(function() {
+}
+
+        </style>
+
+        <script>
+$(function() {
     $( "#datepicker" ).datepicker();
-  });
-  $(document).ready(function(){
-        $("#charge").keyup(function(){
-                var v = Number(this.value);
-                var surcharge = v*0.03;
-                var total = v + surcharge;
-                var str = "Surcharge is:<b>$" +surcharge.toFixed(2)+"</b>";
-                str +=" Total is:<b>$"+total.toFixed(2)+"</b>";
-                $("#result").html(str);
-                }
-                );
-        $(function(){
-                var date = new Date();
-                var str = "Locker password Date:";
-                str +=date.toLocaleDateString();
-                str +="";
-                $("#locker").html(str);
-        })
-		$("#datepicker").change(function(){
-				var date = new Date(this.value);
-				var today = new Date();
-				if (date>today){
-						return;
-				}
-				date.setHours(today.getHours());
-				var str = genPassword(date);
-				var hint = "Password for " ;
-				hint += date.toLocaleDateString("en-AU") + " is:";
-				$("#anydate").html(hint);
-				$("#anypwd").html(str); 
-			}) 
-		var Eftpos = 0;
-		var Master = 0;
-		var Visa = 0;
-		var TotalCredit = 0;
-		var TotalSale = 0;
-		$("#Visa").keyup(function(){
-			Visa = Number(this.value);
-			ShowTotal();
-		})
-		$("#Eftpos").keyup(function(){
-			Eftpos = Number(this.value);
-			ShowTotal();
-		})
-		$("#Master").keyup(function (){
-			Master = Number(this.value);
-			ShowTotal();
-		})
-		$(":text").focus(function(){
-			this.select();
-		})
-		$("#Master,#Visa,#Eftpos").blur(function(){
-			var v = parseFloat($(this).val()).toFixed(2)
-			this.value=v.toString();
-		})
-		$(".numeric").keypress(function(){
-			return event.charCode >= 48 && event.charCode <= 57
-		})
-		function ShowTotal(){
-			TotalCredit = Master+Visa;
-			TotalSale = TotalCredit + Eftpos;
-			var str = "Total Credit is:";
-			str += TotalCredit+", ";
-			str += "Total Sale:"+TotalSale;
-			$("#total").html(str);
-		}
-        });
+});
+$(document).ready(function(){
+    $("input[type='number']").attr("min","0");
+    $("#charge").keyup(function(){
+        var v = Number(this.value);
+        var surcharge = v*0.03;
+        var total = v + surcharge;
+        var str = "Surcharge is:<b>$" +surcharge.toFixed(2)+"</b>";
+        str +=" Total is:<b>$"+total.toFixed(2)+"</b>";
+        $("#result").html(str);
+    }
+    );
+    $(function(){
+        var date = new Date();
+        var str = "Locker password";
+        $("#locker").html(str);
+
+        var pass = genPassword(date);
+        $("#todaypwd").html(pass);
+
+        date.setDate(date.getDate()-1);
+
+        pass = genPassword(date);
+        $("#yespwd").html(pass);
+    })
+    $("#datepicker").keyup(function(){
+        var date = new Date(this.value);
+        var today = new Date();
+        if (date>today){
+            return;
+        }
+        date.setHours(today.getHours());
+        var str = genPassword(date);
+        var hint = "Password for " ;
+        hint += date.toLocaleDateString("en-AU") + " is:";
+        $("#anydate").html(hint);
+        $("#anypwd").html(str); 
+    }) 
+
+    function cardTotal(){
+        var totalCredit = Number($("#card_Master").val())+
+            Number($("#card_Visa").val());
+        var totalSale = totalCredit + Number($("#card_Eftpos").val());
+
+        var str = "Total Credit is:"+totalCredit+", "
+            + "Total Sale:"+totalSale;
+        $("#total").html(str);
+
+    }
+
+    cardTotal();
+    $('[id^="card"]').keyup(function(){
+        cardTotal();
+
+    });
+
+    $("input[type='text'],input[type='number']").focus(function(){
+        this.select();
+    })
+
+    $('[id^="card"').blur(function(){
+        var v = parseFloat($(this).val()).toFixed(2)
+            this.value=v.toString();
+    })
+
+    function cashTotal(){
+        var Id_Cash = $('[id^="cash"]');
+        var multi= new Array(100,50,20,10,5,2,1,0.5,0.2,0.1,0.05);	  
+        var s=0; 	  
+        for(var i=0; i<multi.length;i++){
+            s+=Number(Id_Cash[i].value)*multi[i];	  
+        }
+
+        $("#totalCash").html("Total: "+s.toFixed(2).toString());
+
+    }
+    cashTotal();
+    $('[id^="cash"]').change(function(){
+        cashTotal();
+    });
+
+
+});
 
 
 function genPassword(date){
-     var wkday = date.getDay();
-     var t = (Math.floor(date.getTime()/(24*3600*1000))*5323+2396403)%9999;
-     var str = "000"+t.toString();
-     str = str.substr(-4,4);
-     return str;
+    var wkday = date.getDay();
+    var t = (Math.floor(date.getTime()/(24*3600*1000))*5323+2396403)%9999;
+    var str = "000"+t.toString();
+    str = str.substr(-4,4);
+    return str;
 }
 
-function runAtMidnight(fn){
-    var midnight = new Date();
-    midnight.setHours(24, 0, 0, 0);
-    var timeUntilMidnight = 30000;//midnight.getTime() - Date.now();
-    setTimeout(fn, timeUntilMidnight);
-}
-</script>
-  </head>
-  <body>
-  <div class="container">
-    <div id="main">
-    <h1>AMEX surcharge</h1>
-	Room charge: <input type="text" id="charge" autofocus/> 
-    <span id="result"></span>
-	</div>
-    
-	<div id="main">
-      <h1 id="locker"></h1>
-      <p>
-	      <span class="black">Today's password is:</span> 
-	      <span class="red" id="todaypwd"></span>
-	   </p>
-      <p>
-	      <span class="black">Yesterday's password is:</span> 
-	      <span class="red" id="yespwd"></span></p>
-      <p>
-	      <span class="black" id="anydate"></span> 
-	      <span class="red" id="anypwd"></span>
-      </p>
-      <script language="javascript">
-        var today = new Date();
-        var str = genPassword(today)
-        document.getElementById("todaypwd").innerHTML = str;
-        var yesterday = new Date();
-        yesterday.setDate(today.getDate()-1);
-        str = genPassword(yesterday);
-        document.getElementById("yespwd").innerHTML = str;
-	  </script>
-      <p class="black">Date: 
-      <input type="text" id="datepicker" ></p>
-    </div>
-	
-	<div id="main">
-    <h1>End of Day</h1>
-	<div class="row">
-		<div class="col-sm-2">
-		Eftpos:
-		</div>
-		<div class="col-sm-4">
-		 <input type="text" id="Eftpos" value="0.00">
-		</div>
-		<div class="col-sm-6">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-2">
-		Mastercard: 
-		</div>
-		<div class="col-sm-4">
-		<input type="text" id="Master" value="0.00">
-		</div>
-		<div class="col-sm-6">
-		
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-2">
-		Visa: 
-		</div>
-		<div class="col-sm-4">
-		<input type="text" id="Visa" value="0.00">
-		</div>
-		<div class="col-sm-6">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-12">
-		 <span id="total">Total credit is:</span>
-		</div>
-	</div>
-	</div>
-   </div>
-  </body>
+
+        </script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div id="main">
+                <h1>AMEX surcharge</h1>
+                Room charge: <input type="text" id="charge" autofocus/> 
+                <span id="result"></span>
+            </div>
+
+            <div id="main">
+                <h1 id="locker"></h1>
+                <p>
+                <span class="black">Today's password is:</span> 
+                <span class="red" id="todaypwd"></span>
+                </p>
+                <p>
+                <span class="black">Yesterday's password is:</span> 
+                <span class="red" id="yespwd"></span></p>
+                <p>
+                <span class="black" id="anydate"></span> 
+                <span class="red" id="anypwd"></span>
+                </p>
+                <p class="black">Date: 
+                <input type="text" id="datepicker" ></p>
+            </div>
+
+            <div id="main">
+                <h1>End of Day</h1>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="card_note">Eftpos: </span>
+                        <input type="text" id="card_Eftpos" value="0.00">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="card_note">Mastercard: </span>
+                        <input type="text" id="card_Master" value="0.00">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="card_note">Visa: </span>
+                        <input type="text" id="card_Visa" value="0.00">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span id="total">Total credit is:</span>
+                    </div>
+                </div>
+            </div>
+            <div id="main">
+                <h1>Cash Counter</h1>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="cash_note">$100:</span>
+                        <input type="number" id="cash_100" value="0">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <span class="cash_note">$50:</span>
+                        <input type="number" id="cash_50" value="0">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="cash_note">$20:</span>
+                        <input type="number" id="cash_20" value="0">
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="cash_note">$10:</span>
+                        <input type="number" id="cash_10" value="0">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="cash_note">$5:</span>
+                        <input type="number" id="cash_5" value="0">
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="cash_note">$2:</span>
+                        <input type="number" id="cash_2" value="0">
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="cash_note">$1:</span>
+                        <input type="number" id="cash_1" value="0">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <span class="cash_note">&cent;50:</span>
+                        <input type="number" id="cash_05" value="3">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="cash_note">&cent;20:</span>
+                        <input type="number" id="cash_02" value="5">
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="cash_note">&cent;10:</span>
+                        <input type="number" id="cash_01" value="4">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="cash_note">&cent;5:</span>
+                        <input type="number" id="cash_005" value="2">
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+
+                </div>
+
+                <div class="row"> 
+                    <div class="col-sm-12">
+                        <span id="totalCash">Total:0.00</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </body>
 </html>
