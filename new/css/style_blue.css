@@ -3,27 +3,32 @@
 body{
     background-color:#FFF;
     color:#999;
+    font-family: 'Open Sans', sans-serif;
+    font-size:12pt;
+    overflow-x:hidden;
 }
+body a,.grid_1,plan_1,plan_1.one,plan_1.two,i.icon1, i.icon2, i.icon3, i.icon4, i.icon5, i.icon6 {
+    transition:0.5s all;
+    -webkit-transition:0.5s all;
+    -moz-transition:0.5s all;
+    -o-transition:0.5s all;
+    -ms-transition:0.5s all;
+}
+
+#starrating{
+    height:1em;
+
+}
+.topbar{
+    font-size:10pt;
+    background-color:#222;
+
+}
+
 /* Remove the navbar's default margin-bottom and rounded borders */ 
 .navbar {
     margin-bottom: 0;
     border-radius: 0;
-}
-
-/* Add a gray background color and some padding to the footer */
-footer {
-    background-color: #f2f2f2;
-    padding: 25px;
-}
-
-.carousel-inner img {
-    width: 100%; /* Set width to 100% */
-    margin: auto;
-    min-height:200px;
-}
-#starrating{
-    height:20px;
-
 }
 
 /* Nav bar Begin */
@@ -37,15 +42,15 @@ footer {
 
 .navbar-inverse .navbar-nav>li>a {
     /*color: #9d9d9d;*/
-    color: #FFFFFF;
+    color: #ccc;
 }
 .navbar-inverse .navbar-nav>li>a:hover {
     /*color: #9d9d9d;*/
-    text-decoration:underline;
+    background-color: #0077AA;
 }
 
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
-    background-color: #0077AA;
+    background-color:#003366;
     color:#FFFFFF;
 }
 
@@ -85,10 +90,41 @@ footer {
 /* Nav bar End */
 
 
-
-/* Hide the carousel text when the screen is less than 600 pixels wide */
-@media (max-width: 992px) {
-    .carousel-caption {
-        display: none; 
-    }
+.banner {
+    background: url(../images/cover.jpg) no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    min-height:50px; 
+    background-position: center;
 }
+
+
+.carousel-inner>.item>img {
+    margin: auto;
+    width:100%;
+    
+}
+.carousel-caption {
+    background:RGBA(0,0,0,0.5);
+    vertical-align:middle;
+    width:100%;
+    left:auto;
+    right:auto;
+
+}
+
+.carousel .carousel-caption img{
+    width:50px;
+    display:inline;
+
+}
+
+/* Add a gray background color and some padding to the footer */
+footer {
+    background-color: #f2f2f2;
+    padding: 25px;
+}
+
